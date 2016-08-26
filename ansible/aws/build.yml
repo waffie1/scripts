@@ -1,0 +1,9 @@
+---
+ - hosts: local
+   connection: local
+   gather_facts: no
+   vars_files:
+     - vars.yml
+   tasks:
+     - include: vpc.yml
+

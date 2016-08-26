@@ -1,0 +1,19 @@
+---
+##### GLOBAL VARIABLES #####
+region: us-west-2
+sg_group: aaa-sg
+
+
+##### VPC VARIABLES #####
+vpc_name: aaa-vpc1
+cidr_block: 10.81.0.0/22
+
+public_subnets:
+  - { cidr: 10.81.0.0/25, az: "{{ region }}a", resource_tags: { "Name": "{{ vpc_name }}-public-a", "FWZone": "public" } }
+  - { cidr: 10.81.1.0/25, az: "{{ region }}b", resource_tags: { "Name": "{{ vpc_name }}-public-b", "FWZone": "public" } }
+  - { cidr: 10.81.2.0/25, az: "{{ region }}c", resource_tags: { "Name": "{{ vpc_name }}-public-c", "FWZone": "public" } }
+private_subnets:
+  - { cidr: 10.81.0.128/25, az: "{{ region }}a", resource_tags: { "Name": "{{ vpc_name }}-private-a", "FWZone": "private" } }
+  - { cidr: 10.81.1.128/25, az: "{{ region }}b", resource_tags: { "Name": "{{ vpc_name }}-private-b", "FWZone": "private" } }
+  - { cidr: 10.81.2.128/25, az: "{{ region }}c", resource_tags: { "Name": "{{ vpc_name }}-private-c", "FWZone": "private" } }
+
