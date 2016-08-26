@@ -1,0 +1,21 @@
+- name: create f5 objects
+  hosts: test
+  connection: local
+  tasks:
+    - name: "Import Certificate"
+      local_action:
+        name: mycert
+        module: bigip_ssl_certificate
+        server:  "{{ inventory_hostname }}"
+        user: "{{ username }}"
+        password: "{{ password}}"
+        state: present
+        partition: "{{ partition }}"
+        cert_pem_file: /home/kevcom/ansible/playbooks/f5/library/sl-acurapricing-sys.crt
+        key_pem_file: /home/kevcom/ansible/playbooks/f5/library/sl-acurapricing-sys.key
+        validate_certs: false
+        #cert_pem_file: /home/kevcom/ansible/playbooks/f5/library/addon.crt
+        #key_pem_file: /home/kevcom/ansible/playbooks/f5/library/addon.key
+        #pkcs12_file: /home/kevcom/ansible/playbooks/f5/library/sl-acurapricing-sys.pfx
+        #pkcs12_password: 123456Aa
+  

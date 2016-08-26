@@ -1,0 +1,27 @@
+- name: create f5 objects
+  hosts: test
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: "Create Client SSL Profile"
+      local_action:
+        name: test_ClientSSL
+        module: bigip_ssl_profile
+        server:  "{{ inventory_hostname }}"
+        user: "{{ username }}"
+        password: "{{ password}}"
+        state: present
+        partition: "{{partition}}"
+        #cert: /Common/testcert.crt
+        #key: /Common/testcert.key
+        profile_type: clientssl
+        #defaultsFrom: clientssl
+        #chain: None
+        tmOptions:
+            - dont-insert-empty-fragments
+            - cipher-server-preference
+        #ciphers:
+        #    - default
+        renegotiation: enabled
+        secureRenegotiation: require-strict
+  
