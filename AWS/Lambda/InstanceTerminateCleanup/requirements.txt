@@ -1,0 +1,2 @@
+aws_xray_sdk >= 0.92.2
+requests >= 2.13.0
